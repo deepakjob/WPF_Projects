@@ -1,22 +1,21 @@
 ﻿using EmployeeManagement.Models;
+using System.Data;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace StudentWpfApp.Models
 {
     public class EmployeeService
     {
+       SqlConnection _connection;
+        SqlCommand _command;
         MvvmDemoDbContext ObjContext;
-      
         public EmployeeService()
         {
-            ObjContext = new MvvmDemoDbContext();
-            var version = ConfigurationManager.ConnectionStrings["MvvmDemoDb"].ConnectionString;
+           _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MvvmDemoDb"].ConnectionString);
+            _command = new SqlCommand();
+            _command.Connection = _connection;
+            _command.CommandType = CommandType.StoredProcedure;
+             ObjContext = new MvvmDemoDbContext();
         }
         public List<EmployeeDto> GetAll()
         {

@@ -6,7 +6,7 @@ namespace StudentWpfApp.Models
 {
     public class EmployeeService
     {
-       SqlConnection _connection;
+        SqlConnection _connection;
         SqlCommand _command;
         MvvmDemoDbContext ObjContext;
         public EmployeeService()
